@@ -5,7 +5,6 @@ category: ["criptografia", "xarxes"]
 aliases: ["certificat SSL", "HTTPS"]
 relacionats: ["xifratge", "man-in-the-middle", "sniffing"]
 exemple: "El candauet que veus a la barra d'adreces del navegador indica que la connexió amb aquella web està xifrada amb un certificat vàlid."
-riscNivell: "baix"
 draft: false
 ---
 

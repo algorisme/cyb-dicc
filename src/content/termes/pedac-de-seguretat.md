@@ -5,7 +5,6 @@ category: ["defensa"]
 aliases: ["patch", "actualització de seguretat"]
 relacionats: ["zero-day", "copia-de-seguretat"]
 exemple: "Una actualització del sistema operatiu que tanca una vulnerabilitat que ja s'estava explotant activament."
-riscNivell: "baix"
 draft: false
 ---
 

@@ -5,7 +5,6 @@ category: ["autenticacio", "defensa"]
 aliases: ["2FA", "MFA", "verificació en dos passos"]
 relacionats: ["contrasenya", "biometria"]
 exemple: "Després d'escriure la contrasenya, cal introduir també un codi enviat al mòbil o generat per una app."
-riscNivell: "baix"
 draft: false
 ---
 

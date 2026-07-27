@@ -4,7 +4,6 @@ summary: "Programa que detecta, bloqueja i elimina programari maliciós d'un dis
 category: ["defensa", "malware"]
 relacionats: ["tallafoc", "virus", "rootkit", "sandbox", "malware-sense-fitxers"]
 exemple: "L'antivirus detecta un fitxer descarregat com a maliciós i el posa en quarantena abans que s'executi."
-riscNivell: "baix"
 draft: false
 ---
 

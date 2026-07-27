@@ -5,7 +5,6 @@ category: ["criptografia", "defensa"]
 aliases: ["encriptació"]
 relacionats: ["vpn", "ransomware", "xifratge-punt-a-punt", "certificat-tls-ssl", "funcio-de-hash"]
 exemple: "Un missatge xifrat de punt a punt que només poden llegir l'emissor i el receptor, ni tan sols l'app intermediària."
-riscNivell: "baix"
 draft: false
 ---
 

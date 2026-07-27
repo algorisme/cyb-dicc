@@ -4,7 +4,6 @@ summary: "Autenticació basada en característiques físiques úniques, com l'em
 category: ["autenticacio", "privacitat-dades"]
 relacionats: ["autenticacio-dos-factors", "contrasenya"]
 exemple: "Desbloquejar el mòbil amb l'empremta digital o el reconeixement facial."
-riscNivell: "baix"
 draft: false
 ---
 

@@ -5,7 +5,6 @@ category: ["defensa"]
 aliases: ["entorn aïllat", "caixa de sorra"]
 relacionats: ["honeypot", "antivirus", "malware-sense-fitxers"]
 exemple: "Un antivirus que executa un fitxer sospitós dins d'un sandbox per veure què fa abans de permetre'l al sistema real."
-riscNivell: "baix"
 draft: false
 ---
 

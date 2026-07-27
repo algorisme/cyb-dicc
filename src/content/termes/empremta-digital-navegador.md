@@ -5,7 +5,6 @@ category: ["privacitat-dades", "xarxes"]
 aliases: ["browser fingerprinting"]
 relacionats: ["metadades", "vpn"]
 exemple: "Dues webs diferents et reconeixen com el mateix visitant només per la combinació de resolució de pantalla, fonts instal·lades i configuració del navegador."
-riscNivell: "mitja"
 draft: false
 ---
 

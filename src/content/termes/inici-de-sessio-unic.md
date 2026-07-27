@@ -6,7 +6,6 @@ aliases: ["SSO", "Single Sign-On"]
 lletresIndex: ["S"]
 relacionats: ["contrasenya", "autenticacio-dos-factors", "gestor-de-contrasenyes"]
 exemple: "Accedir a diverses aplicacions d'una empresa amb un únic inici de sessió amb el compte corporatiu, sense tornar a escriure cap contrasenya."
-riscNivell: "baix"
 draft: false
 ---
 

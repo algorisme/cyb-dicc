@@ -5,7 +5,6 @@ category: ["autenticacio", "privacitat-dades"]
 aliases: ["password"]
 relacionats: ["autenticacio-dos-factors", "gestor-de-contrasenyes", "keylogger", "funcio-de-hash", "inici-de-sessio-unic"]
 exemple: "Una contrasenya feble com '123456' es pot endevinar en fraccions de segon; una llarga i única, no."
-riscNivell: "mitja"
 draft: false
 ---
 

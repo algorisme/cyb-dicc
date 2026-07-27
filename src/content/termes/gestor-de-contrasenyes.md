@@ -5,7 +5,6 @@ category: ["autenticacio", "privacitat-dades", "defensa"]
 aliases: ["password manager"]
 relacionats: ["contrasenya", "xifratge"]
 exemple: "En lloc de reutilitzar la mateixa contrasenya arreu, el gestor en crea una diferent i complexa per a cada web."
-riscNivell: "baix"
 draft: false
 ---
 

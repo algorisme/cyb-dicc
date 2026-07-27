@@ -5,7 +5,6 @@ category: ["defensa"]
 aliases: ["pot de mel"]
 relacionats: ["sandbox", "test-de-penetracio"]
 exemple: "Un servidor fals amb dades 'atractives' que en realitat només serveix per detectar i estudiar qui intenta atacar-lo."
-riscNivell: "baix"
 draft: false
 ---
 

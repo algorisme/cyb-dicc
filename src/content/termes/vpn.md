@@ -6,7 +6,6 @@ aliases: ["VPN", "Virtual Private Network", "Xarxa privada virtual"]
 lletresIndex: ["X"]
 relacionats: ["xifratge", "sniffing", "tallafoc"]
 exemple: "Connectar-te a una VPN en una xarxa wifi pública perquè ningú pugui veure el teu trànsit d'internet."
-riscNivell: "baix"
 draft: false
 ---
 

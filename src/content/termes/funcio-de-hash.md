@@ -5,7 +5,6 @@ category: ["criptografia"]
 aliases: ["hash", "funció resum"]
 relacionats: ["xifratge", "contrasenya"]
 exemple: "Un servei no guarda la teva contrasenya real, sinó el resultat de passar-la per una funció de hash; ni ell mateix la pot recuperar."
-riscNivell: "baix"
 draft: false
 ---
 

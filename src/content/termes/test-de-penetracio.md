@@ -5,7 +5,6 @@ category: ["defensa"]
 aliases: ["pentest", "penetration testing"]
 relacionats: ["equip-vermell-equip-blau", "escaneig-de-ports", "superficie-atac"]
 exemple: "Una empresa contracta especialistes perquè intentin 'trencar' els seus propis sistemes, amb permís exprés, per trobar-hi forats de seguretat."
-riscNivell: "baix"
 draft: false
 ---
 

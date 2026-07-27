@@ -5,7 +5,6 @@ category: ["defensa"]
 aliases: ["Extended Detection and Response", "detecció i resposta esteses"]
 relacionats: ["antivirus", "tallafoc", "sandbox"]
 exemple: "Un XDR correlaciona una alerta de l'antivirus en un ordinador amb trànsit sospitós de xarxa per detectar un atac que cap eina per separat hauria vist sencer."
-riscNivell: "baix"
 draft: false
 ---
 

@@ -4,7 +4,6 @@ summary: "Informació sobre una dada (qui, quan, on) que sovint revela més del 
 category: ["privacitat-dades"]
 relacionats: ["empremta-digital-navegador", "rgpd"]
 exemple: "Una foto penjada a internet pot incloure les coordenades GPS exactes d'on es va fer, encara que la imatge en si no ho mostri."
-riscNivell: "mitja"
 draft: false
 ---
 

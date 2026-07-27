@@ -4,7 +4,6 @@ summary: "Dividir una xarxa en parts aïllades perquè un problema en una no es 
 category: ["defensa", "xarxes"]
 relacionats: ["tallafoc", "principi-minim-privilegi", "cuc-informatic"]
 exemple: "La xarxa de les càmeres de seguretat d'una empresa està separada de la xarxa on hi ha els ordinadors amb dades sensibles."
-riscNivell: "baix"
 draft: false
 ---
 

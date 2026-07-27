@@ -5,7 +5,6 @@ category: ["defensa"]
 aliases: ["red team", "blue team"]
 relacionats: ["test-de-penetracio", "honeypot"]
 exemple: "L'equip vermell intenta introduir-se a la xarxa sense ser detectat, mentre l'equip blau intenta identificar-ho i aturar-ho en temps real."
-riscNivell: "baix"
 draft: false
 ---
 

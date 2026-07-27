@@ -5,7 +5,6 @@ category: ["defensa"]
 aliases: ["least privilege"]
 relacionats: ["control-acces-trencat", "segmentacio-de-xarxa", "amenaca-interna"]
 exemple: "Un empleat de comptabilitat no té accés al codi font de l'empresa perquè no li cal per a la seva feina."
-riscNivell: "baix"
 draft: false
 ---
 

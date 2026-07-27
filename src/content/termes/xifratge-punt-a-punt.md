@@ -5,7 +5,6 @@ category: ["criptografia"]
 aliases: ["end-to-end encryption", "E2EE"]
 relacionats: ["xifratge", "metadades"]
 exemple: "Una app de missatgeria amb xifratge de punt a punt que ni la mateixa empresa que la fabrica pot llegir el contingut dels teus missatges."
-riscNivell: "baix"
 draft: false
 ---
 

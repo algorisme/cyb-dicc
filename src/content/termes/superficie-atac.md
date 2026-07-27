@@ -5,7 +5,6 @@ category: ["defensa", "atacs"]
 aliases: ["attack surface"]
 relacionats: ["escaneig-de-ports", "configuracio-erronia-seguretat", "pedac-de-seguretat"]
 exemple: "Com més serveis, ports oberts i aplicacions tingui exposats un servidor, més gran és la seva superfície d'atac."
-riscNivell: "baix"
 draft: false
 ---
 

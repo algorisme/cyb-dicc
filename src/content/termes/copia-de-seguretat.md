@@ -5,7 +5,6 @@ category: ["defensa"]
 aliases: ["backup"]
 relacionats: ["ransomware", "pedac-de-seguretat"]
 exemple: "Tenir els documents importants copiats en un disc extern desconnectat, a més del núvol."
-riscNivell: "baix"
 draft: false
 ---
 

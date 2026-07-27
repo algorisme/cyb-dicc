@@ -5,7 +5,6 @@ category: ["defensa", "xarxes"]
 aliases: ["firewall"]
 relacionats: ["antivirus", "vpn", "segmentacio-de-xarxa"]
 exemple: "Un tallafoc que bloqueja qualsevol connexió entrant no sol·licitada des d'internet cap al teu ordinador."
-riscNivell: "baix"
 draft: false
 ---
 

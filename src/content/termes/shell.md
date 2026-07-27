@@ -5,7 +5,6 @@ category: ["xarxes"]
 aliases: ["terminal", "línia d'ordres"]
 relacionats: ["rootkit", "botnet"]
 exemple: "Un atacant que aconsegueix una 'reverse shell' pot executar ordres a l'ordinador de la víctima des de lluny."
-riscNivell: "mitja"
 draft: false
 ---
 
