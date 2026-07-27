@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://algorisme.github.io/cyb-dicc/sitemap-index.xml
