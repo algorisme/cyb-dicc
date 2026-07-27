@@ -7,6 +7,19 @@
   const BASE = import.meta.env.BASE_URL;
   const container = document.getElementById('search');
 
+  // Pagefind autodetecta la seva pròpia ubicació via `document.currentScript`,
+  // cosa que només funciona si es carrega amb una etiqueta <script> clàssica
+  // (amb import() dinàmic, currentScript sempre és null i falla en silenci).
+  function loadClassicScript(src: string): Promise<void> {
+    return new Promise((resolve, reject) => {
+      const script = document.createElement('script');
+      script.src = src;
+      script.onload = () => resolve();
+      script.onerror = () => reject(new Error(`No s'ha pogut carregar ${src}`));
+      document.head.appendChild(script);
+    });
+  }
+
   async function initSearch() {
     try {
       const cssHref = `${BASE}pagefind/pagefind-ui.css`;
@@ -17,8 +30,8 @@
         document.head.appendChild(link);
       }
 
-      await import(/* @vite-ignore */ `${BASE}pagefind/pagefind-ui.js`);
-      // @ts-expect-error - PagefindUI s'exposa globalment un cop carregat el script
+      await loadClassicScript(`${BASE}pagefind/pagefind-ui.js`);
+      // @ts-expect-error - PagefindUI s'exposa globalment un cop carregat l'script
       new PagefindUI({ element: '#search', showSubResults: true });
     } catch {
       console.warn(

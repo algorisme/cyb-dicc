@@ -1,11 +1,13 @@
 ---
 const any = new Date().getFullYear();
+const versio = import.meta.env.SITE_VERSION;
 ---
 
 <footer class="site-footer">
   <div class="wrap">
     <p>
       Diccionari de ciberseguretat &mdash; contingut obert, pensat per a persones no expertes. {any}.
+      {versio && <> &middot; {versio}</>}
     </p>
   </div>
 </footer>
