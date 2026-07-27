@@ -2,7 +2,7 @@ services:
   web:
     image: node:22-alpine
     working_dir: /app
-    command: sh -c "npm install && npm run dev -- --host 0.0.0.0"
+    command: sh -c "npm install --no-audit --no-fund && npm run dev -- --host 0.0.0.0"
     ports:
       - "4321:4321"
     volumes:
@@ -12,6 +12,10 @@ services:
       # Necessari perquè Vite detecti canvis de fitxers de manera fiable
       # dins d'algunes configuracions de bind mount de Docker.
       - CHOKIDAR_USEPOLLING=true
+      # El DNS d'aquest entorn falla intermitentment (EAI_AGAIN) quan npm
+      # llança moltes peticions IPv6 en paral·lel; es força IPv4 i es
+      # limiten les connexions simultànies per evitar-ho.
+      - NODE_OPTIONS=--dns-result-order=ipv4first
 
 volumes:
   node_modules:
