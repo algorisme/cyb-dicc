@@ -8,15 +8,19 @@ import { CATEGORY_LABELS } from '../lib/categories';
 import { withBase } from '../lib/url';
 
 const termes = await getCollection('termes', ({ data }) => !data.draft);
-const letters = [...new Set(termes.map((t) => t.data.title.charAt(0).toUpperCase()))].sort();
+const letters = [
+  ...new Set(termes.flatMap((t) => [t.data.title.charAt(0).toUpperCase(), ...(t.data.lletresIndex ?? [])])),
+].sort();
 ---
 
 <BaseLayout title="Inici">
   <section style="margin-bottom: 2.5rem;">
-    <h1>Diccionari de ciberseguretat</h1>
+    <h1>Recull de termes vinculats al món de la ciberseguretat.</h1>
     <p style="max-width: 60ch; color: var(--color-text-muted);">
-      Un glossari de termes de ciberseguretat explicats en català planer, pensat per a persones que no en són
-      expertes: phishing, ransomware, XSS, sniffing i molts més.
+      Un glossari en català planer que explica termes com <a href={withBase('termes/phishing/')}>phishing</a>,
+      <a href={withBase('termes/ransomware/')}>ransomware</a>, <a href={withBase('termes/xss/')}>XSS</a> o
+      <a href={withBase('termes/sniffing/')}>sniffing</a> perquè qualsevol persona els entengui — no cal ser
+      expert per protegir-te.
     </p>
   </section>
 

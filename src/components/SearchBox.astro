@@ -5,6 +5,7 @@
 
 <script>
   const BASE = import.meta.env.BASE_URL;
+  const container = document.getElementById('search');
 
   async function initSearch() {
     try {
@@ -23,6 +24,10 @@
       console.warn(
         'Pagefind no disponible: cal executar "npm run build" (astro build + pagefind) per activar la cerca.'
       );
+      if (container) {
+        container.classList.add('search-box--unavailable');
+        container.textContent = 'Cerca no disponible en aquest mode (cal build de producció)';
+      }
     }
   }
 

@@ -2,7 +2,8 @@
 title: "VPN (xarxa privada virtual)"
 summary: "Connexió xifrada que amaga i protegeix el teu trànsit d'internet a través d'un servidor intermediari."
 category: ["defensa", "criptografia", "xarxes"]
-aliases: ["VPN", "Virtual Private Network"]
+aliases: ["VPN", "Virtual Private Network", "Xarxa privada virtual"]
+lletresIndex: ["X"]
 relacionats: ["xifratge", "sniffing", "tallafoc"]
 exemple: "Connectar-te a una VPN en una xarxa wifi pública perquè ningú pugui veure el teu trànsit d'internet."
 riscNivell: "baix"

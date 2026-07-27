@@ -1,8 +1,8 @@
 ---
-title: "Denegació de servei (DDoS)"
+title: "DDoS (Denegació de servei distribuïda)"
 summary: "Saturar un servei amb trànsit massiu perquè deixi de funcionar per als usuaris legítims."
 category: ["xarxes", "atacs"]
-aliases: ["DDoS", "atac de denegació de servei distribuït"]
+aliases: ["atac de denegació de servei distribuït", "DoS"]
 relacionats: ["botnet", "tallafoc"]
 exemple: "Milers d'ordinadors infectats (una botnet) envien peticions simultànies a una web fins que col·lapsa."
 riscNivell: "alt"

@@ -3,6 +3,7 @@ title: "RGPD"
 summary: "Reglament europeu que regula com les empreses han de tractar les dades personals dels usuaris."
 category: ["normativa-legal", "privacitat-dades"]
 aliases: ["Reglament General de Protecció de Dades", "GDPR"]
+lletresIndex: ["G"]
 relacionats: ["contrasenya", "xifratge", "metadades", "amenaca-interna"]
 exemple: "Una empresa ha de notificar en 72 hores una filtració de dades personals a l'autoritat de protecció de dades."
 draft: false

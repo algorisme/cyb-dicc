@@ -6,14 +6,21 @@ import { getCollection } from 'astro:content';
 
 const termesRaw = await getCollection('termes', ({ data }) => !data.draft);
 const termes = termesRaw
-  .map((t) => ({ id: t.id, title: t.data.title, summary: t.data.summary }))
+  .map((t) => ({
+    id: t.id,
+    title: t.data.title,
+    summary: t.data.summary,
+    lletresIndex: t.data.lletresIndex ?? [],
+  }))
   .sort((a, b) => a.title.localeCompare(b.title, 'ca'));
 
 const grups = new Map<string, typeof termes>();
 for (const t of termes) {
-  const letter = t.title.charAt(0).toUpperCase();
-  if (!grups.has(letter)) grups.set(letter, []);
-  grups.get(letter)!.push(t);
+  const lletres = new Set([t.title.charAt(0).toUpperCase(), ...t.lletresIndex.map((l) => l.toUpperCase())]);
+  for (const letter of lletres) {
+    if (!grups.has(letter)) grups.set(letter, []);
+    grups.get(letter)!.push(t);
+  }
 }
 const letters = [...grups.keys()].sort();
 ---

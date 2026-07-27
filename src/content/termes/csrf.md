@@ -1,15 +1,15 @@
 ---
-title: "Cross-Site Request Forgery (CSRF)"
+title: "CSRF (Cross-Site Request Forgery)"
 summary: "Enganyar el navegador d'una víctima autenticada perquè executi una acció no desitjada en un altre lloc."
 category: ["atacs"]
-aliases: ["CSRF"]
+aliases: ["Cross-Site Request Forgery"]
 relacionats: ["xss", "injeccio-sql"]
 exemple: "Visitar una pàgina maliciosa que, sense que ho sàpigues, envia en segon pla una petició per canviar el teu correu al banc on tens sessió oberta."
 riscNivell: "mitja"
 draft: false
 ---
 
-Un atac **Cross-Site Request Forgery (CSRF)** aprofita que estàs autenticat en un lloc web (per exemple, el teu banc) perquè una pàgina maliciosa diferent enviï, sense que te n'adonis, una petició a aquell lloc en nom teu —el navegador hi adjunta automàticament les teves credencials de sessió.
+Un atac **CSRF (Cross-Site Request Forgery)** aprofita que estàs autenticat en un lloc web (per exemple, el teu banc) perquè una pàgina maliciosa diferent enviï, sense que te n'adonis, una petició a aquell lloc en nom teu —el navegador hi adjunta automàticament les teves credencials de sessió.
 
 L'atacant no roba la teva contrasenya, sinó que "fa servir" la sessió que ja tens oberta perquè el sistema executi accions no autoritzades: canviar dades, fer transferències, etc.
 
