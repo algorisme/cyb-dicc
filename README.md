@@ -1,13 +1,18 @@
 # Diccionari de ciberseguretat
 
-Glossari de termes de ciberseguretat explicats en català planer, pensat per a persones que no en són expertes (phishing, ransomware, XSS, sniffing...). Lloc estàtic fet amb [Astro](https://astro.build), pensat per allotjar-se a GitHub Pages.
+Glossari de termes de ciberseguretat explicats en català planer, pensat per a persones que no en són expertes (phishing, ransomware, XSS, sniffing...).
 
-## Estat actual
+🔗 **[algorisme.github.io/cyb-dicc](https://algorisme.github.io/cyb-dicc/)**
 
-- **Contingut**: 61 termes redactats en català, amb frontmatter complet (categoria, alias, exemple, nivell de risc, termes relacionats).
-- **Funcionalitats implementades**: cercador full-text (Pagefind), terme destacat aleatori a la home, índex alfabètic A-Z, llistat i pàgines per categoria, mode fosc amb persistència.
-- **Desplegament**: workflow de GitHub Actions (`.github/workflows/deploy.yml`) que publica a GitHub Pages **només en crear un tag amb format `vX.X.X`** (p. ex. `v1.0.0`), no a cada push. Cal tenir Pages activat a Settings → Pages → Source = "GitHub Actions".
-- **Verificat localment**: `npm run build` (Astro + Pagefind) i `astro check` sense errors; provat amb `astro preview`.
+## Sobre el projecte
+
+- **61 termes** en català, cadascun amb definició curta, explicació detallada, exemple pràctic i termes relacionats.
+- Cercador full-text (Pagefind), terme destacat aleatori, índex alfabètic A-Z, navegació per categoria i mode fosc.
+- Lloc 100% estàtic (sense backend ni base de dades), fet amb [Astro](https://astro.build) i allotjat a GitHub Pages.
+
+## Contribuir
+
+Si trobes un error en una definició o vols proposar un terme nou, obre una *issue* o una *pull request*. Vegeu [Afegir un terme nou](#afegir-un-terme-nou) més avall per al format esperat.
 
 ## Stack
 
@@ -81,8 +86,3 @@ El desplegament només s'activa amb un tag `vX.X.X`, no a cada push a `main`:
 git tag v1.0.0
 git push origin v1.0.0
 ```
-
-## Pendent / properes passes
-
-- Activar GitHub Pages (Settings → Pages → Source: GitHub Actions) al repo remot.
-- Ampliar el glossari amb més termes a mesura que calgui.
