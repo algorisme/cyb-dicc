@@ -1,0 +1,33 @@
+name: Auditoria de dependències
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+  schedule:
+    # Cada dilluns a les 6:00 UTC, per detectar vulnerabilitats noves
+    # publicades en paquets ja instal·lats, sense que hi hagi hagut cap canvi.
+    - cron: '0 6 * * 1'
+  workflow_dispatch:
+
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Configurar Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Instal·lar dependències
+        run: npm ci
+
+      - name: Auditar vulnerabilitats
+        run: npm audit --audit-level=high
