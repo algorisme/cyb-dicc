@@ -1,0 +1,12 @@
+---
+import { CATEGORY_LABELS, type Categoria } from '../lib/categories';
+import { withBase } from '../lib/url';
+
+interface Props {
+  categoria: Categoria;
+}
+
+const { categoria } = Astro.props;
+---
+
+<a class="badge" href={withBase(`categories/${categoria}/`)}>{CATEGORY_LABELS[categoria]}</a>

@@ -1,0 +1,42 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import TermeDestacat from '../components/TermeDestacat.astro';
+import IndexAlfabetic from '../components/IndexAlfabetic.astro';
+import { getCollection } from 'astro:content';
+import { CATEGORIES } from '../content.config';
+import { CATEGORY_LABELS } from '../lib/categories';
+import { withBase } from '../lib/url';
+
+const termes = await getCollection('termes', ({ data }) => !data.draft);
+const letters = [...new Set(termes.map((t) => t.data.title.charAt(0).toUpperCase()))].sort();
+---
+
+<BaseLayout title="Inici">
+  <section style="margin-bottom: 2.5rem;">
+    <h1>Diccionari de ciberseguretat</h1>
+    <p style="max-width: 60ch; color: var(--color-text-muted);">
+      Un glossari de termes de ciberseguretat explicats en català planer, pensat per a persones que no en són
+      expertes: phishing, ransomware, XSS, sniffing i molts més.
+    </p>
+  </section>
+
+  <TermeDestacat />
+
+  <section style="margin: 2.5rem 0;">
+    <h2>Explora per lletra</h2>
+    <IndexAlfabetic letters={letters} />
+  </section>
+
+  <section>
+    <h2>Explora per categoria</h2>
+    <div class="grid grid-cards">
+      {
+        CATEGORIES.map((c) => (
+          <a class="card" href={withBase(`categories/${c}/`)} style="display:block; text-decoration:none; color:inherit;">
+            {CATEGORY_LABELS[c]}
+          </a>
+        ))
+      }
+    </div>
+  </section>
+</BaseLayout>

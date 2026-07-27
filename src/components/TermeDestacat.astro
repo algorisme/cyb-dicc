@@ -1,0 +1,60 @@
+---
+---
+
+<div id="terme-destacat" class="card">
+  <p class="eyebrow">Terme destacat</p>
+  <p id="terme-destacat-body">Carregant…</p>
+</div>
+
+<script>
+  interface TermeIndex {
+    id: string;
+    title: string;
+    summary: string;
+  }
+
+  const BASE = import.meta.env.BASE_URL;
+  const body = document.getElementById('terme-destacat-body');
+
+  async function loadFeatured() {
+    if (!body) return;
+    try {
+      const res = await fetch(`${BASE}termes-index.json`);
+      if (!res.ok) throw new Error('resposta no vàlida');
+      const termes: TermeIndex[] = await res.json();
+      if (!Array.isArray(termes) || termes.length === 0) throw new Error('sense termes');
+
+      const terme = termes[Math.floor(Math.random() * termes.length)];
+
+      body.replaceChildren();
+
+      const heading = document.createElement('h3');
+      heading.style.margin = '0 0 0.35rem';
+      const link = document.createElement('a');
+      link.href = `${BASE}termes/${terme.id}/`;
+      link.textContent = terme.title;
+      heading.appendChild(link);
+
+      const summary = document.createElement('p');
+      summary.style.margin = '0';
+      summary.style.color = 'var(--color-text-muted)';
+      summary.textContent = terme.summary;
+
+      body.replaceWith(heading, summary);
+    } catch {
+      body.textContent = "No s'ha pogut carregar el terme destacat.";
+    }
+  }
+
+  loadFeatured();
+</script>
+
+<style>
+  .eyebrow {
+    margin: 0 0 0.35rem;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--color-accent);
+  }
+</style>

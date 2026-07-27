@@ -1,0 +1,27 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { getCollection } from 'astro:content';
+import { CATEGORIES } from '../../content.config';
+import { CATEGORY_LABELS } from '../../lib/categories';
+import { withBase } from '../../lib/url';
+
+const termes = await getCollection('termes', ({ data }) => !data.draft);
+const counts = Object.fromEntries(CATEGORIES.map((c) => [c, 0])) as Record<(typeof CATEGORIES)[number], number>;
+for (const t of termes) {
+  for (const c of t.data.category) counts[c]++;
+}
+---
+
+<BaseLayout title="Categories" description="Categories del glossari de ciberseguretat.">
+  <h1>Categories</h1>
+  <div class="grid grid-cards">
+    {
+      CATEGORIES.map((c) => (
+        <a class="card" href={withBase(`categories/${c}/`)} style="display:block; text-decoration:none; color:inherit;">
+          <h3 style="margin:0 0 0.35rem;">{CATEGORY_LABELS[c]}</h3>
+          <p style="margin:0; color:var(--color-text-muted);">{counts[c]} termes</p>
+        </a>
+      ))
+    }
+  </div>
+</BaseLayout>

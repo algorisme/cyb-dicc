@@ -1,0 +1,40 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import TermeCard from '../../components/TermeCard.astro';
+import IndexAlfabetic from '../../components/IndexAlfabetic.astro';
+import { getCollection } from 'astro:content';
+
+const termesRaw = await getCollection('termes', ({ data }) => !data.draft);
+const termes = termesRaw
+  .map((t) => ({ id: t.id, title: t.data.title, summary: t.data.summary }))
+  .sort((a, b) => a.title.localeCompare(b.title, 'ca'));
+
+const grups = new Map<string, typeof termes>();
+for (const t of termes) {
+  const letter = t.title.charAt(0).toUpperCase();
+  if (!grups.has(letter)) grups.set(letter, []);
+  grups.get(letter)!.push(t);
+}
+const letters = [...grups.keys()].sort();
+---
+
+<BaseLayout title="Tots els termes" description="Índex complet del glossari de ciberseguretat, ordenat alfabèticament.">
+  <h1>Tots els termes</h1>
+
+  <div style="position: sticky; top: 0; background: var(--color-bg); padding-block: 0.75rem; z-index: 1;">
+    <IndexAlfabetic letters={letters} hrefPrefix="" />
+  </div>
+
+  {
+    letters.map((letter) => (
+      <section id={`letra-${letter}`} style="margin-top: 2rem;">
+        <h2>{letter}</h2>
+        <div class="grid grid-cards">
+          {grups.get(letter)!.map((t) => (
+            <TermeCard id={t.id} title={t.title} summary={t.summary} />
+          ))}
+        </div>
+      </section>
+    ))
+  }
+</BaseLayout>

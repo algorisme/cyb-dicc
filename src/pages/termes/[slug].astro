@@ -1,0 +1,32 @@
+---
+import { getCollection, getEntries, render } from 'astro:content';
+import TermeLayout from '../../layouts/TermeLayout.astro';
+
+export async function getStaticPaths() {
+  const termes = await getCollection('termes', ({ data }) => !data.draft);
+  return termes.map((entry) => ({
+    params: { slug: entry.id },
+    props: { entry },
+  }));
+}
+
+const { entry } = Astro.props;
+const { Content } = await render(entry);
+
+const relacionatsEntries = entry.data.relacionats ? await getEntries(entry.data.relacionats) : [];
+const relacionats = relacionatsEntries
+  .filter((r) => !r.data.draft)
+  .map((r) => ({ id: r.id, title: r.data.title, summary: r.data.summary }));
+---
+
+<TermeLayout
+  title={entry.data.title}
+  summary={entry.data.summary}
+  category={entry.data.category}
+  aliases={entry.data.aliases}
+  exemple={entry.data.exemple}
+  riscNivell={entry.data.riscNivell}
+  relacionats={relacionats}
+>
+  <Content />
+</TermeLayout>

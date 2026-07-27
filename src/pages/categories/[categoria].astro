@@ -1,0 +1,25 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import TermeCard from '../../components/TermeCard.astro';
+import { getCollection } from 'astro:content';
+import { CATEGORIES } from '../../content.config';
+import { CATEGORY_LABELS } from '../../lib/categories';
+
+export async function getStaticPaths() {
+  return CATEGORIES.map((categoria) => ({ params: { categoria } }));
+}
+
+const { categoria } = Astro.params as { categoria: (typeof CATEGORIES)[number] };
+
+const termes = (await getCollection('termes', ({ data }) => !data.draft && data.category.includes(categoria)))
+  .map((t) => ({ id: t.id, title: t.data.title, summary: t.data.summary }))
+  .sort((a, b) => a.title.localeCompare(b.title, 'ca'));
+---
+
+<BaseLayout title={CATEGORY_LABELS[categoria]} description={`Termes de la categoria ${CATEGORY_LABELS[categoria]}.`}>
+  <h1>{CATEGORY_LABELS[categoria]}</h1>
+  {termes.length === 0 && <p>Encara no hi ha termes en aquesta categoria.</p>}
+  <div class="grid grid-cards">
+    {termes.map((t) => <TermeCard id={t.id} title={t.title} summary={t.summary} />)}
+  </div>
+</BaseLayout>

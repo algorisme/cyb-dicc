@@ -1,0 +1,88 @@
+---
+import BaseLayout from './BaseLayout.astro';
+import CategoriaBadge from '../components/CategoriaBadge.astro';
+import TermeCard from '../components/TermeCard.astro';
+import { RISC_LABELS, type Categoria } from '../lib/categories';
+
+interface RelacionatEntry {
+  id: string;
+  title: string;
+  summary: string;
+}
+
+interface Props {
+  title: string;
+  summary: string;
+  category: Categoria[];
+  aliases?: string[];
+  exemple?: string;
+  riscNivell?: 'baix' | 'mitja' | 'alt';
+  relacionats?: RelacionatEntry[];
+}
+
+const { title, summary, category, aliases, exemple, riscNivell, relacionats } = Astro.props;
+---
+
+<BaseLayout title={title} description={summary}>
+  <article data-pagefind-body>
+    <p class="eyebrow">Fitxa del terme</p>
+    <h1 style="margin: 0 0 0.75rem;">{title}</h1>
+
+    <div class="badges" style="display:flex; flex-wrap:wrap; gap:0.4rem; margin-bottom: 1rem;">
+      {category.map((c) => <CategoriaBadge categoria={c} />)}
+      {riscNivell && <span class={`badge badge-risc-${riscNivell}`}>{RISC_LABELS[riscNivell]}</span>}
+    </div>
+
+    {
+      aliases && aliases.length > 0 && (
+        <p style="color: var(--color-text-muted); font-size: 0.9rem;">
+          També conegut com: {aliases.join(', ')}
+        </p>
+      )
+    }
+
+    <div class="prose">
+      <slot />
+    </div>
+
+    {
+      exemple && (
+        <div class="card" style="margin-top: 1.5rem;">
+          <strong>Exemple</strong>
+          <p style="margin: 0.35rem 0 0;">{exemple}</p>
+        </div>
+      )
+    }
+
+    {
+      relacionats && relacionats.length > 0 && (
+        <section style="margin-top: 2.5rem;">
+          <h2>Vegeu també</h2>
+          <div class="grid grid-cards">
+            {relacionats.map((t) => (
+              <TermeCard id={t.id} title={t.title} summary={t.summary} />
+            ))}
+          </div>
+        </section>
+      )
+    }
+  </article>
+</BaseLayout>
+
+<style>
+  .eyebrow {
+    margin: 0 0 0.35rem;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--color-accent);
+  }
+
+  .prose :global(h2) {
+    margin-top: 2rem;
+  }
+
+  .prose :global(p) {
+    max-width: 68ch;
+  }
+</style>

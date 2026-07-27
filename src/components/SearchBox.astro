@@ -1,0 +1,30 @@
+---
+---
+
+<div id="search" class="search-box"></div>
+
+<script>
+  const BASE = import.meta.env.BASE_URL;
+
+  async function initSearch() {
+    try {
+      const cssHref = `${BASE}pagefind/pagefind-ui.css`;
+      if (!document.querySelector(`link[href="${cssHref}"]`)) {
+        const link = document.createElement('link');
+        link.rel = 'stylesheet';
+        link.href = cssHref;
+        document.head.appendChild(link);
+      }
+
+      await import(/* @vite-ignore */ `${BASE}pagefind/pagefind-ui.js`);
+      // @ts-expect-error - PagefindUI s'exposa globalment un cop carregat el script
+      new PagefindUI({ element: '#search', showSubResults: true });
+    } catch {
+      console.warn(
+        'Pagefind no disponible: cal executar "npm run build" (astro build + pagefind) per activar la cerca.'
+      );
+    }
+  }
+
+  initSearch();
+</script>

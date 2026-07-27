@@ -1,0 +1,59 @@
+---
+import { withBase } from '../lib/url';
+
+interface Props {
+  letters: string[];
+  hrefPrefix?: string;
+}
+
+const { letters, hrefPrefix = withBase('termes/') } = Astro.props;
+const alfabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('');
+---
+
+<nav class="index-alfabetic" aria-label="Índex alfabètic">
+  {
+    alfabet.map((letter) => {
+      const disponible = letters.includes(letter);
+      return disponible ? (
+        <a href={`${hrefPrefix}#letra-${letter}`}>{letter}</a>
+      ) : (
+        <span aria-hidden="true">{letter}</span>
+      );
+    })
+  }
+</nav>
+
+<style>
+  .index-alfabetic {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.25rem;
+    font-size: 0.85rem;
+  }
+
+  .index-alfabetic a,
+  .index-alfabetic span {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 1.6rem;
+    height: 1.6rem;
+    border-radius: 4px;
+    text-decoration: none;
+  }
+
+  .index-alfabetic a {
+    color: var(--color-text);
+    border: 1px solid var(--color-border);
+  }
+
+  .index-alfabetic a:hover {
+    border-color: var(--color-accent);
+    color: var(--color-accent);
+  }
+
+  .index-alfabetic span {
+    color: var(--color-text-muted);
+    opacity: 0.35;
+  }
+</style>

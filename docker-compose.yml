@@ -1,0 +1,17 @@
+services:
+  web:
+    image: node:22-alpine
+    working_dir: /app
+    command: sh -c "npm install && npm run dev -- --host 0.0.0.0"
+    ports:
+      - "4321:4321"
+    volumes:
+      - .:/app
+      - node_modules:/app/node_modules
+    environment:
+      # Necessari perquè Vite detecti canvis de fitxers de manera fiable
+      # dins d'algunes configuracions de bind mount de Docker.
+      - CHOKIDAR_USEPOLLING=true
+
+volumes:
+  node_modules:

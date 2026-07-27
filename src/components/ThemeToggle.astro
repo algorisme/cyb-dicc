@@ -1,0 +1,28 @@
+---
+---
+
+<button id="theme-toggle" class="btn" type="button" aria-label="Canvia entre mode clar i fosc">
+  <span id="theme-toggle-icon" aria-hidden="true">🌙</span>
+</button>
+
+<script>
+  const button = document.getElementById('theme-toggle');
+  const icon = document.getElementById('theme-toggle-icon');
+
+  function currentTheme(): 'light' | 'dark' {
+    return document.documentElement.dataset.theme === 'dark' ? 'dark' : 'light';
+  }
+
+  function syncIcon() {
+    if (icon) icon.textContent = currentTheme() === 'dark' ? '☀️' : '🌙';
+  }
+
+  syncIcon();
+
+  button?.addEventListener('click', () => {
+    const next = currentTheme() === 'dark' ? 'light' : 'dark';
+    document.documentElement.dataset.theme = next;
+    localStorage.setItem('theme', next);
+    syncIcon();
+  });
+</script>
