@@ -6,7 +6,7 @@ Glossari de termes de ciberseguretat explicats en català planer, pensat per a p
 
 - **Contingut**: 61 termes redactats en català, amb frontmatter complet (categoria, alias, exemple, nivell de risc, termes relacionats).
 - **Funcionalitats implementades**: cercador full-text (Pagefind), terme destacat aleatori a la home, índex alfabètic A-Z, llistat i pàgines per categoria, mode fosc amb persistència.
-- **Desplegament**: workflow de GitHub Actions (`.github/workflows/deploy.yml`) llest per publicar a GitHub Pages. **Pendent**: crear el repo remot `algorisme/cyb-dicc` a GitHub i activar Pages → Source = "GitHub Actions" a la configuració del repo.
+- **Desplegament**: workflow de GitHub Actions (`.github/workflows/deploy.yml`) que publica a GitHub Pages **només en crear un tag amb format `vX.X.X`** (p. ex. `v1.0.0`), no a cada push. Cal tenir Pages activat a Settings → Pages → Source = "GitHub Actions".
 - **Verificat localment**: `npm run build` (Astro + Pagefind) i `astro check` sense errors; provat amb `astro preview`.
 
 ## Stack
@@ -73,8 +73,16 @@ docker compose down    # atura i neteja el contenidor
 
 No cal `npm install` previ ni tenir Node instal·lat a l'amfitrió: el contenidor (`node:22-alpine`) instal·la les dependències en un volum propi (`node_modules`) i munta el codi font en viu. Qualsevol canvi als fitxers de `src/content/termes/` (o a la resta del codi) es reflecteix immediatament sense reiniciar res, gràcies a `astro dev`. Nota: com amb `npm run dev`, el cercador (Pagefind) no funciona en aquest mode — cal `npm run build` + `npm run preview` per provar-lo.
 
+## Fer una release (desplegar a producció)
+
+El desplegament només s'activa amb un tag `vX.X.X`, no a cada push a `main`:
+
+```bash
+git tag v1.0.0
+git push origin v1.0.0
+```
+
 ## Pendent / properes passes
 
-- Crear el repo a GitHub sota `algorisme/cyb-dicc` i fer el primer push.
 - Activar GitHub Pages (Settings → Pages → Source: GitHub Actions) al repo remot.
 - Ampliar el glossari amb més termes a mesura que calgui.
