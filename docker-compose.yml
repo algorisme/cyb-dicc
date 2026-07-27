@@ -1,12 +1,14 @@
 services:
   web:
-    image: node:22-alpine
+    build: .
     working_dir: /app
-    # S'actualitza npm perquè min-release-age (.npmrc) requereix >=11.10.0,
-    # versió superior a la que porta per defecte la imatge node:22-alpine.
-    command: sh -c "npm install -g npm@latest && npm install --no-audit --no-fund && npm run dev -- --host 0.0.0.0"
-    ports:
-      - "4321:4321"
+    command: sh -c "npm install --no-audit --no-fund && npm run dev -- --host 0.0.0.0"
+    # El resolver DNS intern del bridge de Docker (127.0.0.11) falla de
+    # manera intermitent (SERVFAIL) en aquest entorn. Amb la xarxa del
+    # host, el contenidor usa directament el DNS de l'amfitrió, que
+    # funciona. Només disponible a Linux; ports: no cal (el contenidor
+    # ja escolta directament als ports del host).
+    network_mode: host
     volumes:
       - .:/app
       - node_modules:/app/node_modules
