@@ -6,7 +6,7 @@ Glossari de termes de ciberseguretat explicats en català planer, pensat per a p
 
 ## Sobre el projecte
 
-- **78 termes** en català, cadascun amb definició curta, explicació detallada, exemple pràctic i termes relacionats.
+- **110 termes** en català, cadascun amb definició curta, explicació detallada, exemple pràctic i termes relacionats.
 - Cercador full-text (Pagefind), terme destacat aleatori, índex alfabètic A-Z, navegació per categoria i mode fosc.
 - Lloc 100% estàtic (sense backend ni base de dades), fet amb [Astro](https://astro.build) i allotjat a GitHub Pages.
 
