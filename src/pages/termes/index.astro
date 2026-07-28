@@ -2,9 +2,13 @@
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import TermeCard from '../../components/TermeCard.astro';
 import IndexAlfabetic from '../../components/IndexAlfabetic.astro';
-import { getCollection } from 'astro:content';
+import { getPublishedTermes } from '../../lib/termes';
+import { buildDefinedTermSetJsonLd, buildBreadcrumbJsonLd } from '../../lib/jsonld';
+import { withBase } from '../../lib/url';
 
-const termesRaw = await getCollection('termes', ({ data }) => !data.draft);
+const DESCRIPTION = 'Índex complet del glossari de ciberseguretat, ordenat alfabèticament.';
+
+const termesRaw = await getPublishedTermes();
 const termes = termesRaw
   .map((t) => ({
     id: t.id,
@@ -13,6 +17,25 @@ const termes = termesRaw
     lletresIndex: t.data.lletresIndex ?? [],
   }))
   .sort((a, b) => a.title.localeCompare(b.title, 'ca'));
+
+const homeUrl = new URL(withBase(''), Astro.site).href;
+const termesIndexUrl = new URL(Astro.url.pathname, Astro.site).href;
+
+const jsonLd = [
+  buildDefinedTermSetJsonLd({
+    name: 'Diccionari de ciberseguretat',
+    description: DESCRIPTION,
+    url: termesIndexUrl,
+    termes: termes.map((t) => ({
+      title: t.title,
+      url: new URL(withBase(`termes/${t.id}/`), Astro.site).href,
+    })),
+  }),
+  buildBreadcrumbJsonLd([
+    { name: 'Inici', url: homeUrl },
+    { name: 'Tots els termes', url: termesIndexUrl },
+  ]),
+];
 
 const grups = new Map<string, typeof termes>();
 for (const t of termes) {
@@ -25,7 +48,7 @@ for (const t of termes) {
 const letters = [...grups.keys()].sort();
 ---
 
-<BaseLayout title="Tots els termes" description="Índex complet del glossari de ciberseguretat, ordenat alfabèticament.">
+<BaseLayout title="Tots els termes" description={DESCRIPTION} jsonLd={jsonLd}>
   <h1>Tots els termes</h1>
 
   <div style="position: sticky; top: 0; background: var(--color-bg); padding-block: 0.75rem; z-index: 1;">

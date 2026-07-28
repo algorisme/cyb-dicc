@@ -1,0 +1,12 @@
+---
+interface Props {
+  data: Record<string, unknown>;
+}
+
+const { data } = Astro.props;
+// set:html perquè Astro no escapi el JSON com si fos HTML; escapem manualment
+// només "<" per evitar que un valor amb "</script>" literal trenqui el tag.
+const json = JSON.stringify(data).replace(/</g, '\\u003c');
+---
+
+<script type="application/ld+json" set:html={json} is:inline />

@@ -18,12 +18,14 @@ interface Props {
   exemple?: string;
   riscNivell?: 'baix' | 'mitja' | 'alt';
   relacionats?: RelacionatEntry[];
+  ogImage?: string;
+  jsonLd?: Record<string, unknown>[];
 }
 
-const { title, summary, category, aliases, exemple, riscNivell, relacionats } = Astro.props;
+const { title, summary, category, aliases, exemple, riscNivell, relacionats, ogImage, jsonLd } = Astro.props;
 ---
 
-<BaseLayout title={title} description={summary}>
+<BaseLayout title={title} description={summary} ogImage={ogImage} jsonLd={jsonLd}>
   <article data-pagefind-body>
     <p class="eyebrow">Fitxa del terme</p>
     <h1 style="margin: 0 0 0.75rem;">{title}</h1>

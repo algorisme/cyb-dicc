@@ -9,7 +9,7 @@ export default defineConfig({
   base: '/cyb-dicc',
   output: 'static',
   trailingSlash: 'always',
-  integrations: [sitemap()],
+  integrations: [sitemap({ filter: (page) => !page.includes('/og/') })],
   markdown: {
     remarkPlugins: [remarkAutolinkTermes],
   },

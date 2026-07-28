@@ -1,9 +1,12 @@
 ---
-import { getCollection, getEntries, render } from 'astro:content';
+import { getEntries, render } from 'astro:content';
 import TermeLayout from '../../layouts/TermeLayout.astro';
+import { getPublishedTermes } from '../../lib/termes';
+import { buildDefinedTermJsonLd, buildBreadcrumbJsonLd } from '../../lib/jsonld';
+import { withBase } from '../../lib/url';
 
 export async function getStaticPaths() {
-  const termes = await getCollection('termes', ({ data }) => !data.draft);
+  const termes = await getPublishedTermes();
   return termes.map((entry) => ({
     params: { slug: entry.id },
     props: { entry },
@@ -17,6 +20,29 @@ const relacionatsEntries = entry.data.relacionats ? await getEntries(entry.data.
 const relacionats = relacionatsEntries
   .filter((r) => !r.data.draft)
   .map((r) => ({ id: r.id, title: r.data.title, summary: r.data.summary }));
+
+const canonicalUrl = new URL(Astro.url.pathname, Astro.site).href;
+const homeUrl = new URL(withBase(''), Astro.site).href;
+const termesIndexUrl = new URL(withBase('termes/'), Astro.site).href;
+const ogImage = new URL(withBase(`og/${entry.id}.png`), Astro.site).href;
+
+const jsonLd = [
+  buildDefinedTermJsonLd({
+    id: entry.id,
+    title: entry.data.title,
+    summary: entry.data.summary,
+    category: entry.data.category,
+    aliases: entry.data.aliases,
+    riscNivell: entry.data.riscNivell,
+    url: canonicalUrl,
+    definedTermSetUrl: termesIndexUrl,
+  }),
+  buildBreadcrumbJsonLd([
+    { name: 'Inici', url: homeUrl },
+    { name: 'Termes', url: termesIndexUrl },
+    { name: entry.data.title, url: canonicalUrl },
+  ]),
+];
 ---
 
 <TermeLayout
@@ -27,6 +53,8 @@ const relacionats = relacionatsEntries
   exemple={entry.data.exemple}
   riscNivell={entry.data.riscNivell}
   relacionats={relacionats}
+  ogImage={ogImage}
+  jsonLd={jsonLd}
 >
   <Content />
 </TermeLayout>
