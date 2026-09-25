@@ -30,6 +30,19 @@ function extractAcronym(title: string | undefined): string | null {
   return uppercaseCount >= 2 ? candidate : null;
 }
 
+// Etiquetes sense cap minúscula i amb almenys dues lletres (SOC, IDS, OT,
+// C&C, 2FA...) són sigles: s'han de comparar respectant majúscules perquè
+// no enllacin paraules catalanes comunes ("jo soc" no és un SOC).
+function isAcronymLabel(label: string): boolean {
+  return !/\p{Ll}/u.test(label) && (label.match(/\p{Lu}/gu) ?? []).length >= 2;
+}
+
+function matchesRef(ref: TermRef, matched: string): boolean {
+  return isAcronymLabel(ref.label)
+    ? ref.label === matched
+    : ref.label.toLowerCase() === matched.toLowerCase();
+}
+
 function loadTermRefs(): TermRef[] {
   const refs: TermRef[] = [];
   const files = fs.readdirSync(TERMES_DIR).filter((f) => f.endsWith('.md'));
@@ -83,7 +96,7 @@ export function remarkAutolinkTermes() {
       [
         pattern,
         (matched: string) => {
-          const ref = refs.find((r) => r.label.toLowerCase() === matched.toLowerCase());
+          const ref = refs.find((r) => matchesRef(r, matched));
           if (!ref || ref.slug === currentSlug || linkedSlugs.has(ref.slug)) {
             return false; // deixa el text tal qual, sense enllaç
           }

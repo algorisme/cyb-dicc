@@ -14,6 +14,13 @@ Glossari de termes de ciberseguretat explicats en català planer, pensat per a p
 
 Si trobes un error en una definició o vols proposar un terme nou, obre una *issue* o una *pull request*. Vegeu [Afegir un terme nou](#afegir-un-terme-nou) més avall per al format esperat.
 
+## Llicència
+
+- **Contingut** (els termes de `src/content/termes/`): [CC BY-SA 4.0](LICENSE-CONTINGUT). Pots reutilitzar-lo i adaptar-lo citant-ne l'origen i compartint les obres derivades amb la mateixa llicència.
+- **Codi** (la resta del repositori): [MIT](LICENSE).
+
+En enviar una contribució, acceptes que es publiqui sota aquestes mateixes llicències.
+
 ## Stack
 
 - **Astro** (content collections amb Content Layer API) — cada terme és un fitxer Markdown a `src/content/termes/`.

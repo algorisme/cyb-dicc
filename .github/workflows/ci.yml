@@ -1,0 +1,41 @@
+name: Build i comprovació de tipus
+
+# Valida cada PR i cada push a main: el build falla si un terme no compleix
+# l'esquema (p. ex. un "relacionats" que apunta a un terme inexistent), cosa
+# que altrament no es detectaria fins al desplegament amb tag.
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Configurar Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Fixar versió d'npm
+        run: npm install -g npm@12.0.1
+
+      - name: Instal·lar dependències
+        run: npm ci
+
+      - name: Comprovació de tipus
+        run: npx astro check
+
+      - name: Build (Astro + Pagefind)
+        run: npm run build
